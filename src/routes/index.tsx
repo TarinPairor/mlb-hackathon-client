@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="p-4">
+    <div className="p-4 text-lg font-bold">
       {/* <SampleData /> */}
       {/* <RandomEntry /> */}
       {/* <RandomEntries /> */}

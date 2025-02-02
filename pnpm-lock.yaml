@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.0.3
         version: 4.0.3
+      '@tailwindcss/vite':
+        specifier: ^4.0.3
+        version: 4.0.3(vite@6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2))
       '@tanstack/react-query':
         specifier: ^5.66.0
         version: 5.66.0(react@18.3.1)
@@ -20,9 +23,6 @@ importers:
       lucide-react:
         specifier: ^0.474.0
         version: 0.474.0(react@18.3.1)
-      postcss:
-        specifier: ^8.5.1
-        version: 8.5.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -728,6 +728,11 @@ packages:
 
   '@tailwindcss/postcss@4.0.3':
     resolution: {integrity: sha512-qUyxuhuI2eTgRJ+qfCQRAr69Cw7BdSz+PoNFUNoRuhPjikNC8+sxK+Mi/chaXAXewjv/zbf6if6z6ItVLh+e9Q==}
+
+  '@tailwindcss/vite@4.0.3':
+    resolution: {integrity: sha512-Qj6rSO+EvXnNDymloKZ11D54JJTnDrkRWJBzNHENDxjt0HtrCZJbSLIrcJ/WdaoU4othrel/oFqHpO/doxIS/Q==}
+    peerDependencies:
+      vite: ^5.2.0 || ^6
 
   '@tanstack/history@1.99.0':
     resolution: {integrity: sha512-MQS1Lg8D+1vpasEJKf4zs1sxhxbXcoejmVCZDbo0bq2wq+xVK+kRixj5Pae2kb2APzdXYga4u236GBbgCKTcnQ==}
@@ -2098,6 +2103,14 @@ snapshots:
       lightningcss: 1.29.1
       postcss: 8.5.1
       tailwindcss: 4.0.3
+
+  '@tailwindcss/vite@4.0.3(vite@6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2))':
+    dependencies:
+      '@tailwindcss/node': 4.0.3
+      '@tailwindcss/oxide': 4.0.3
+      lightningcss: 1.29.1
+      tailwindcss: 4.0.3
+      vite: 6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)
 
   '@tanstack/history@1.99.0': {}
 
