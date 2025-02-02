@@ -1,9 +1,8 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
-
 export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
@@ -13,6 +12,9 @@ export const Route = createRootRoute({
         </Link>{" "}
         <Link to="/about" className="[&.active]:font-bold">
           About
+        </Link>
+        <Link to="/feed" className="[&.active]:font-bold">
+          Feed
         </Link>
       </div>
       <hr />
