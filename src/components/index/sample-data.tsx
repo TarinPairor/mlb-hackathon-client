@@ -1,3 +1,4 @@
+// import ReactPlayer from "react-player";
 import { useGetSampleOf2024MLBHomeRuns } from "../../apis/api";
 import { HomeRunEntry } from "../../types/types";
 
@@ -15,11 +16,19 @@ export default function SampleData() {
               key={index}
               className="bg-white shadow-md rounded-lg overflow-hidden"
             >
-              <video width="320" height="240" autoPlay>
+              {/* <ReactPlayer
+                width="320px"
+                height="240px"
+                url={video.video}
+                playing
+                muted
+                controls
+              /> */}
+              <video width="320" height="240" autoPlay controls={true}>
                 <source src={video.video} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="p-4">
+              {/* <div className="p-4">
                 <h4 className="text-lg font-semibold">{video.title}</h4>
                 <p className="text-sm text-gray-600">
                   Exit Velocity: {video.ExitVelocity}
@@ -30,7 +39,7 @@ export default function SampleData() {
                 <p className="text-sm text-gray-600">
                   Launch Angle: {video.LaunchAngle}
                 </p>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>

@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import HomeRunFeed from "../components/index/homerun-feed";
 
 // import RandomEntry from "../components/index/random-entry";
-import SampleData from "../components/index/sample-data";
+// import RandomEntries from "../components/index/random-entries";
+// import SampleData from "../components/index/sample-data";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -10,8 +12,10 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="p-4">
-      <SampleData />
+      {/* <SampleData /> */}
       {/* <RandomEntry /> */}
+      {/* <RandomEntries /> */}
+      <HomeRunFeed />
     </div>
   );
 }
