@@ -8,15 +8,21 @@ importers:
 
   .:
     dependencies:
-      '@tailwindcss/vite':
+      '@tailwindcss/postcss':
         specifier: ^4.0.3
-        version: 4.0.3(vite@6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2))
+        version: 4.0.3
       '@tanstack/react-query':
         specifier: ^5.66.0
         version: 5.66.0(react@18.3.1)
       '@tanstack/react-router':
         specifier: ^1.99.0
         version: 1.99.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      lucide-react:
+        specifier: ^0.474.0
+        version: 0.474.0(react@18.3.1)
+      postcss:
+        specifier: ^8.5.1
+        version: 8.5.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -74,6 +80,10 @@ importers:
         version: 6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)
 
 packages:
+
+  '@alloc/quick-lru@5.2.0':
+    resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
+    engines: {node: '>=10'}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -716,10 +726,8 @@ packages:
     resolution: {integrity: sha512-FFcp3VNvRjjmFA39ORM27g2mbflMQljhvM7gxBAujHxUy4LXlKa6yMF9wbHdTbPqTONiCyyOYxccvJyVyI/XBg==}
     engines: {node: '>= 10'}
 
-  '@tailwindcss/vite@4.0.3':
-    resolution: {integrity: sha512-Qj6rSO+EvXnNDymloKZ11D54JJTnDrkRWJBzNHENDxjt0HtrCZJbSLIrcJ/WdaoU4othrel/oFqHpO/doxIS/Q==}
-    peerDependencies:
-      vite: ^5.2.0 || ^6
+  '@tailwindcss/postcss@4.0.3':
+    resolution: {integrity: sha512-qUyxuhuI2eTgRJ+qfCQRAr69Cw7BdSz+PoNFUNoRuhPjikNC8+sxK+Mi/chaXAXewjv/zbf6if6z6ItVLh+e9Q==}
 
   '@tanstack/history@1.99.0':
     resolution: {integrity: sha512-MQS1Lg8D+1vpasEJKf4zs1sxhxbXcoejmVCZDbo0bq2wq+xVK+kRixj5Pae2kb2APzdXYga4u236GBbgCKTcnQ==}
@@ -1301,6 +1309,11 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
+  lucide-react@0.474.0:
+    resolution: {integrity: sha512-CmghgHkh0OJNmxGKWc0qfPJCYHASPMVSyGY8fj3xgk4v84ItqDg64JNKFZn5hC6E0vHi6gxnbCgwhyVB09wQtA==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   memoize-one@5.2.1:
     resolution: {integrity: sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==}
 
@@ -1608,6 +1621,8 @@ packages:
     resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
 snapshots:
+
+  '@alloc/quick-lru@5.2.0': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:
@@ -2075,13 +2090,14 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.0.3
       '@tailwindcss/oxide-win32-x64-msvc': 4.0.3
 
-  '@tailwindcss/vite@4.0.3(vite@6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2))':
+  '@tailwindcss/postcss@4.0.3':
     dependencies:
+      '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.0.3
       '@tailwindcss/oxide': 4.0.3
       lightningcss: 1.29.1
+      postcss: 8.5.1
       tailwindcss: 4.0.3
-      vite: 6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)
 
   '@tanstack/history@1.99.0': {}
 
@@ -2728,6 +2744,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-react@0.474.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   memoize-one@5.2.1: {}
 
