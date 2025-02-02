@@ -15,8 +15,7 @@ const useVideoFeed = () => {
     },
     initialPageParam: 0,
     getNextPageParam: (_, pages) => pages.length,
-    // Pre-fetch 2 videos ahead
-    // staleTime: 1000 * 60 * 5, // Consider data fresh for 5 minutes
+    staleTime: 1000 * 60 * 5, // Consider data fresh for 5 minutes
   });
 };
 
@@ -60,15 +59,17 @@ const VideoCard = ({
           loop
           playsInline
           preload="metadata"
-          muted // Consider user preference for sound
+          controls
+          autoPlay
+          muted
         />
-        <div className="absolute bottom-4 left-4 text-white">
+        {/* <div className=" text-white">
           <h3 className="text-lg font-bold">
             Exit Velocity: {video.ExitVelocity}
           </h3>
           <p>Hit Distance: {video.HitDistance}</p>
           <p>Launch Angle: {video.LaunchAngle}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
