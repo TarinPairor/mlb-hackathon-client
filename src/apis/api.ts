@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { HomeRunEntry } from "../types/types";
+import { Article, HomeRunEntry } from "../types/types";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -61,6 +61,17 @@ export const useGetRandomMLBHomeRuns = (length: number) => {
         `${backendUrl}/api/getRandomMLBHomeRuns?length=${length}`
       );
       const data = (await res.json()) as HomeRunEntry[];
+      return data || [];
+    },
+  });
+};
+
+export const useGetArticles = (length: number) => {
+  return useQuery<Article[]>({
+    queryKey: ["articles", length],
+    queryFn: async (): Promise<Article[]> => {
+      const res = await fetch(`${backendUrl}/api/getArticles?length=${length}`);
+      const data = (await res.json()) as Article[];
       return data || [];
     },
   });

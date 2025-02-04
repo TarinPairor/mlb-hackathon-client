@@ -7,6 +7,13 @@ export type HomeRunEntry = {
   video: string;
 };
 
+export type Article = {
+  title: string;
+  paragraphs: string;
+  img: string[] | undefined;
+  url: string;
+};
+
 export type User = {
   // id: number;
   user_name: string;
@@ -14,3 +21,7 @@ export type User = {
   info: string;
   elo: number;
 };
+
+export type FeedItem =
+  | { type: "video"; data: HomeRunEntry }
+  | { type: "article"; data: Article };
