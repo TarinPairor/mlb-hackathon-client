@@ -25,3 +25,11 @@ export type User = {
 export type FeedItem =
   | { type: "video"; data: HomeRunEntry }
   | { type: "article"; data: Article };
+
+
+  export type ContentLog = {
+    email: string;
+    watched_for: number;
+    article_summary: string;
+    play_id: string;
+  };

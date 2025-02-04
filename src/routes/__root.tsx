@@ -21,16 +21,18 @@ export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
       <UserProvider>
-        <div className="p-2 flex gap-2">
-          <Link to="/" className="[&.active]:font-bold">
-            Home
-          </Link>{" "}
-          <Link to="/about" className="[&.active]:font-bold">
-            About
-          </Link>
-          <Link to="/feed" className="[&.active]:font-bold">
-            Feed
-          </Link>
+        <div className="flex justify-between items-center">
+          <div className="p-2 flex gap-2">
+            <Link to="/" className="[&.active]:font-bold">
+              Home
+            </Link>{" "}
+            <Link to="/about" className="[&.active]:font-bold">
+              About
+            </Link>
+            <Link to="/feed" className="[&.active]:font-bold">
+              Feed
+            </Link>
+          </div>
           <Login />
         </div>
         <hr />

@@ -23,17 +23,21 @@ export function VideoPlayer({ video, isActive, onLoaded }: VideoPlayerProps) {
   }, [isActive]);
 
   return (
-    <video
-      ref={videoRef}
-      width="640"
-      height="360"
-      src={video.video}
-      controls
-      //   autoPlay={isActive}
-      preload="auto"
-      muted
-      onLoadedData={onLoaded}
-      className="w-full h-full object-contain"
-    />
+    <div className="bg-black h-[100%] flex justify-center">
+      <video
+        ref={videoRef}
+        width="640" // * 2 = 1280
+        height="360" // * 2 = 720
+        // width="1280"
+        // height="720"
+        src={video.video}
+        controls
+        autoPlay={isActive}
+        preload="auto"
+        muted
+        onLoadedData={onLoaded}
+        className="w-full object-contain"
+      />
+    </div>
   );
 }

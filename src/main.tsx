@@ -31,7 +31,9 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
-        <RouterProvider router={router} />
+        <div className="font-[Poppins]">
+          <RouterProvider router={router} />
+        </div>
       </ClerkProvider>
     </StrictMode>
   );
