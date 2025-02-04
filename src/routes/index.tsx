@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import HomeRunFeed from "../components/index/homerun-feed";
+// import HomeRunFeed from "../components/index/homerun-feed";
 
 // import RandomEntry from "../components/index/random-entry";
 // import RandomEntries from "../components/index/random-entries";
@@ -15,7 +15,7 @@ function Index() {
       {/* <SampleData /> */}
       {/* <RandomEntry /> */}
       {/* <RandomEntries /> */}
-      <HomeRunFeed />
+      {/* <HomeRunFeed /> */}
     </div>
   );
 }

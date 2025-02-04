@@ -98,6 +98,7 @@ export default function Feed() {
                 autoPlay
                 preload="auto"
                 key={currentVideo.play_id}
+                muted
               />
             </div>
 

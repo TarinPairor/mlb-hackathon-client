@@ -6,3 +6,11 @@ export type HomeRunEntry = {
   LaunchAngle: string;
   video: string;
 };
+
+export type User = {
+  // id: number;
+  user_name: string;
+  email: string;
+  info: string;
+  elo: number;
+};
