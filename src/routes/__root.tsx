@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+// import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { ReactNode, useState } from "react";
 import { User } from "../types/types";
 import { UserContext } from "../contexts/user-context";
@@ -37,7 +37,7 @@ export const Route = createRootRoute({
         </div>
         <hr />
         <Outlet />
-        <TanStackRouterDevtools />
+        {/* <TanStackRouterDevtools /> */}
       </UserProvider>
     </QueryClientProvider>
   ),

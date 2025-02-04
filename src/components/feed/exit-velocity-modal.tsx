@@ -1,24 +1,43 @@
 import { useState, useRef, useEffect } from "react";
+import { useCreateGuessTheSpeed } from "../../apis/guess-the-speed";
+import { useUser } from "@clerk/clerk-react";
 
 interface ExitVelocityModalProps {
   isOpen: boolean;
   onClose: () => void;
   actualExitVelocity: string;
+  play_id: string;
 }
 
 export function ExitVelocityModal({
   isOpen,
   onClose,
   actualExitVelocity,
+  play_id,
 }: ExitVelocityModalProps) {
+  const { user } = useUser();
   const [guess, setGuess] = useState("");
   const [hasGuessed, setHasGuessed] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const difference = Math.abs(Number(guess) - Number(actualExitVelocity));
+  const createGuessTheSpeedMutation = useCreateGuessTheSpeed();
+
+  useEffect(() => {
+    setGuess("");
+    setHasGuessed(false);
+  }, [play_id]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (guess) setHasGuessed(true);
+    if (guess) {
+      setHasGuessed(true);
+      createGuessTheSpeedMutation.mutate({
+        email: user?.primaryEmailAddress?.emailAddress || "",
+        guess: Number(guess),
+        play_id,
+        actual_speed: Number(actualExitVelocity),
+      });
+    }
   };
 
   useEffect(() => {
@@ -78,7 +97,7 @@ export function ExitVelocityModal({
             {!hasGuessed && (
               <button
                 type="submit"
-                className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5"
+                className="text-black bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5"
               >
                 Submit Guess
               </button>
@@ -92,7 +111,7 @@ export function ExitVelocityModal({
                 <p>Difference: {difference.toFixed(1)} mph</p>
                 <button
                   onClick={onClose}
-                  className="mt-4 text-black bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5"
+                  className="mt-4 text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5"
                 >
                   Close
                 </button>

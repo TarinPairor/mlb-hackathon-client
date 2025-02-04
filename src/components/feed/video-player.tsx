@@ -23,7 +23,7 @@ export function VideoPlayer({ video, isActive, onLoaded }: VideoPlayerProps) {
   }, [isActive]);
 
   return (
-    <div className="bg-black h-[100%] flex justify-center">
+    <div className="bg-black h-96 flex justify-center">
       <video
         ref={videoRef}
         width="640" // * 2 = 1280

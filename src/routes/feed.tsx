@@ -9,6 +9,7 @@ import { FeedItem } from "../types/types";
 // import { useCreateContentLog } from "../apis/content-log";
 // import { useUser } from "@clerk/clerk-react";
 import { ExitVelocityModal } from "../components/feed/exit-velocity-modal";
+import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/feed")({
   component: Feed,
@@ -87,26 +88,34 @@ export default function Feed() {
   return (
     <div className="min-h-screen flex flex-col justify-center bg-gray-900 text-white">
       <div className="max-w-2xl mx-auto">
-        <div className="flex flex-row justify-center gap-10">
+        <div className="flex md:flex-row flex-col justify-center md:items-start items-center gap-10">
           {/* Main Content */}
-          <div className="relative rounded-lg overflow-hidden w-full h-96 flex flex-col items-center">
-            {currentItem.type === "video" ? (
-              <VideoPlayer
-                video={currentItem.data}
-                isActive={true}
-                onLoaded={() => handleItemLoaded(currentIndex)}
-              />
-            ) : (
-              <ArticleCard article={currentItem.data} />
-            )}
+          <motion.div
+            key={currentIndex}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="relative rounded-lg overflow-hidden w-[100%]">
+              {currentItem.type === "video" ? (
+                <VideoPlayer
+                  video={currentItem.data}
+                  isActive={true}
+                  onLoaded={() => handleItemLoaded(currentIndex)}
+                />
+              ) : (
+                <ArticleCard article={currentItem.data} />
+              )}
 
-            {/* Loading indicator */}
-            {!loadedItems.has(currentIndex) && currentItem.type === "video" && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
-              </div>
-            )}
-          </div>
+              {/* Loading indicator */}
+              {!loadedItems.has(currentIndex) &&
+                currentItem.type === "video" && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
+                  </div>
+                )}
+            </div>
+          </motion.div>
 
           {/* Controls and Info */}
           <div className="w-[30%]">
@@ -118,29 +127,26 @@ export default function Feed() {
             />
             {/* Video Info */}
             {currentItem.type === "video" && currentItem.data && (
-              <div className="bg-gray-800 rounded-lg text-xs p-2">
-                <h2 className="mb-2">{currentItem.data.title}</h2>
+              <div className=" text-xs">
                 <div className="space-y-2">
                   <div>
                     <div className="flex justify-center items-center">
-                      {/* <p className="font-semibold">Exit Velocity</p> */}
-                      <button
-                        onClick={() => setIsModalOpen(true)}
-                        className="text-blue-400 hover:text-blue-300 text-xs"
+                      <motion.div
+                        // key={currentIndex}
+                        initial={{ y: -50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="text-xs absolute bottom-0 left-0 ml-4"
                       >
-                        Guess The Speed
-                      </button>
+                        <button
+                          onClick={() => setIsModalOpen(true)}
+                          className="text-blue-400 hover:text-blue-300 "
+                        >
+                          Guess The Speed
+                        </button>
+                      </motion.div>
                     </div>
-                    {/* <p>{currentItem.data.ExitVelocity}</p> */}
                   </div>
-                  {/* <div>
-                    <p className="font-semibold">Hit Distance</p>
-                    <p>{currentItem.data.HitDistance}</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold">Launch Angle</p>
-                    <p>{currentItem.data.LaunchAngle}</p>
-                  </div> */}
                 </div>
               </div>
             )}
@@ -152,6 +158,7 @@ export default function Feed() {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           actualExitVelocity={currentItem.data.ExitVelocity}
+          play_id={currentItem.data.play_id}
         />
       )}
     </div>
