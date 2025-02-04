@@ -1,9 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export const Route = createFileRoute("/about")({
   component: About,
 });
 
 function About() {
-  return <div className="p-2 bg-red-500">Hello from About!</div>;
+  const [markdown, setMarkdown] = useState("");
+
+  useEffect(() => {
+    fetch("../../README.md")
+      .then((res) => res.text())
+      .then((text) => setMarkdown(text));
+  }, []);
+
+  return (
+    <div className="">
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+    </div>
+  );
 }

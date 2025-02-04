@@ -76,28 +76,6 @@ Users can **scroll through a dynamic feed** of **short-form baseball videos** an
 
 ---
 
-<!-- ## 🛢️ Schema
-
-### 🏠 **Users Table**
-| Column      | Type      | Description |
-|-------------|----------|-------------|
-| `id`        | `uuid`   | Unique user ID. |
-| `email`     | `string` | User's email for auth. |
-| `username`  | `string` | Display name. |
-| `created_at`| `date`   | Signup date. |
-
-### 📊 **Content Log Table**
-| Column        | Type       | Description |
-|--------------|-----------|-------------|
-| `id`         | `uuid`    | Unique log ID. |
-| `user_id`    | `uuid`    | References Users table. |
-| `content_id` | `string`  | ID of watched content. |
-| `content_type` | `enum` (`video`, `article`) | Type of content. |
-| `interaction` | `enum` (`like`, `comment`, `watch`) | User interaction. |
-| `watched_at` | `date`    | Timestamp of interaction. |
-
---- -->
-
 ## 🔒 Privacy Policy
 
 - **✅ Uses third-party authentication** (Clerk) – No passwords stored.
