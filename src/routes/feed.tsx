@@ -86,9 +86,16 @@ export default function Feed() {
   const currentItem = feedItems[currentIndex];
 
   return (
-    <div className="min-h-screen flex flex-col justify-center bg-gray-900 text-white">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-900 text-white">
+      {currentItem.type === "video" ? (
+        <div className="text-xs font-bold absolute top-1/6">
+          {currentItem.data.title}
+        </div>
+      ) : (
+        <div className="text-xs font-bold absolute top-1/6 p-1">Article</div>
+      )}
       <div className="max-w-2xl mx-auto">
-        <div className="flex md:flex-row flex-col justify-center md:items-start items-center gap-10">
+        <div className="flex md:flex-row flex-col justify-center md:items-center items-center gap-10">
           {/* Main Content */}
           <motion.div
             key={currentIndex}
