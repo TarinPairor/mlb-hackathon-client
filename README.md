@@ -185,3 +185,7 @@ This data-driven approach suggests a **TikTok-inspired platform** could help **b
 6. Williams, M. T. (2024, April 17). _POV: Baseball needs to shake up the game—or risk a slow death_. BU Today. Retrieved from https://www.bu.edu/articles/2024/baseball-shake-up-the-game-or-risk-a-slow-death/
 
 ### **⚡ Built with love & caffeine in just 2 days!**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
