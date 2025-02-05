@@ -17,7 +17,7 @@ function About() {
   }, []);
 
   return (
-    <div className="">
+    <div className="text-white bg-gray-900">
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
     </div>
   );

@@ -58,7 +58,7 @@ export const useGetRandomMLBHomeRuns = (length: number) => {
     queryKey: ["randomMLBHomeRuns", length],
     queryFn: async (): Promise<HomeRunEntry[]> => {
       const res = await fetch(
-        `${backendUrl}/api/getRandomMLBHomeRuns?length=${length}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/getRandomMLBHomeRuns?length=10`
       );
       const data = (await res.json()) as HomeRunEntry[];
       return data || [];
@@ -70,7 +70,9 @@ export const useGetArticles = (length: number) => {
   return useQuery<Article[]>({
     queryKey: ["articles", length],
     queryFn: async (): Promise<Article[]> => {
-      const res = await fetch(`${backendUrl}/api/getArticles?length=${length}`);
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/getArticles?length=10`
+      );
       const data = (await res.json()) as Article[];
       return data || [];
     },

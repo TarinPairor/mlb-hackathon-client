@@ -6,20 +6,29 @@ import { VideoPlayer } from "../components/feed/video-player";
 import { ArticleCard } from "../components/feed/article-card";
 import { FeedNavigation } from "../components/feed/feed-navigation";
 import { FeedItem } from "../types/types";
-// import { useCreateContentLog } from "../apis/content-log";
-// import { useUser } from "@clerk/clerk-react";
+import { useCreateContentLog } from "../apis/content-log";
+import { useUser } from "@clerk/clerk-react";
 import { ExitVelocityModal } from "../components/feed/exit-velocity-modal";
 import { motion } from "framer-motion";
+import BaseballIcon from "../assets/baseball-svgrepo-com.svg";
 
 export const Route = createFileRoute("/feed")({
   component: Feed,
 });
 
 export default function Feed() {
-  // const { user } = useUser();
-  const { data: videos } = useGetRandomMLBHomeRuns(10);
-  const { data: articles } = useGetArticles(10);
-  // const createContentLogMutation = useCreateContentLog();
+  const { user } = useUser();
+  const {
+    data: videos,
+    isLoading: isVideosLoading,
+    isError,
+    error,
+  } = useGetRandomMLBHomeRuns(10);
+  console.log(videos);
+  const { data: articles, isLoading: isArticlesLoading } = useGetArticles(10);
+  console.log(articles);
+
+  const createContentLogMutation = useCreateContentLog();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -38,20 +47,20 @@ export default function Feed() {
       const duration = (endTime - startTime) / 1000; // duration in seconds
       console.log(`You watched ${currentIndex} for ${duration} seconds`);
       const article_summary =
-        feedItems[currentIndex].type === "article"
+        feedItems[currentIndex]?.type === "article"
           ? feedItems[currentIndex].data.title
           : "";
       const play_id =
-        feedItems[currentIndex].type === "video"
+        feedItems[currentIndex]?.type === "video"
           ? feedItems[currentIndex].data.play_id
           : "";
       if (article_summary || play_id) {
-        // createContentLogMutation.mutate({
-        //   email: user?.primaryEmailAddress?.emailAddress || "",
-        //   watched_for: duration,
-        //   article_summary,
-        //   play_id,
-        // });
+        createContentLogMutation.mutate({
+          email: user?.primaryEmailAddress?.emailAddress || "",
+          watched_for: duration,
+          article_summary,
+          play_id,
+        });
       }
     }
     // if its a video and it hasnt finished loading, dint set the start time
@@ -81,13 +90,25 @@ export default function Feed() {
     }
   };
 
-  if (!feedItems.length) return <div>Loading...</div>;
+  if (isVideosLoading || isArticlesLoading)
+    return (
+      <div className="absolute bg-gray-900 inset-0 flex justify-center items-center">
+        <img
+          src={BaseballIcon}
+          alt="Baseball Icon"
+          className=" animate-spin"
+          width={80}
+          height={80}
+        />
+      </div>
+    );
+  if (isError) return <>{error.message}</>;
 
   const currentItem = feedItems[currentIndex];
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-900 text-white">
-      {currentItem.type === "video" ? (
+      {currentItem?.type === "video" ? (
         <div className="text-xs font-bold absolute top-1/6">
           {currentItem.data.title}
         </div>
@@ -104,19 +125,19 @@ export default function Feed() {
             transition={{ duration: 0.5 }}
           >
             <div className="relative rounded-lg overflow-hidden w-[100%]">
-              {currentItem.type === "video" ? (
+              {currentItem?.type === "video" ? (
                 <VideoPlayer
                   video={currentItem.data}
                   isActive={true}
                   onLoaded={() => handleItemLoaded(currentIndex)}
                 />
               ) : (
-                <ArticleCard article={currentItem.data} />
+                <ArticleCard article={currentItem?.data} />
               )}
 
               {/* Loading indicator */}
               {!loadedItems.has(currentIndex) &&
-                currentItem.type === "video" && (
+                currentItem?.type === "video" && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
                   </div>
@@ -133,7 +154,7 @@ export default function Feed() {
               isLastItem={currentIndex === feedItems.length - 1}
             />
             {/* Video Info */}
-            {currentItem.type === "video" && currentItem.data && (
+            {currentItem?.type === "video" && currentItem?.data && (
               <div className=" text-xs">
                 <div className="space-y-2">
                   <div>
@@ -160,12 +181,12 @@ export default function Feed() {
           </div>
         </div>
       </div>
-      {currentItem.type === "video" && (
+      {currentItem?.type === "video" && (
         <ExitVelocityModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          actualExitVelocity={currentItem.data.ExitVelocity}
-          play_id={currentItem.data.play_id}
+          actualExitVelocity={currentItem?.data.ExitVelocity}
+          play_id={currentItem?.data.play_id}
         />
       )}
     </div>

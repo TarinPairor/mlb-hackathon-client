@@ -111,7 +111,7 @@ export function ExitVelocityModal({
                 <p>Difference: {difference.toFixed(1)} mph</p>
                 <button
                   onClick={onClose}
-                  className="mt-4 text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5"
+                  className="mt-4 text-black bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5"
                 >
                   Close
                 </button>

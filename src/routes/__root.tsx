@@ -32,6 +32,9 @@ export const Route = createRootRoute({
             <Link to="/feed" className="[&.active]:font-bold">
               Feed
             </Link>
+            <Link to="/profile" className="[&.active]:font-bold">
+              Profile
+            </Link>
           </div>
           <Login />
         </div>
