@@ -11,7 +11,7 @@ export const Route = createFileRoute("/profile")({
 
 function Profile() {
   const { user } = useUser();
-  const [summary, setSummary] = useState<string | null>(null);
+  const [, setSummary] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
   const { data: contentLogs } = useGetContentLogFromEmail(
